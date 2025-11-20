@@ -1,1 +1,35 @@
-<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <title>Coffee Shop Designs</title>\n    <meta name=\"description\" content=\"Beautiful coffee shop website templates\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n    <script>\n        // GitHub Pages SPA redirect hack\n        // This script takes the current URL and redirects to index.html\n        // with the URL path stored in a query parameter\n        sessionStorage.redirect = location.href;\n    </script>\n    <meta http-equiv=\"refresh\" content=\"0;URL='/'\"></meta>\n</head>\n<body>\n    <div style=\"display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; text-align: center;\">\n        <div>\n            <h1>☕ Coffee Shop Designs</h1>\n            <p>Redirecting to homepage...</p>\n            <p><a href=\"/\" style=\"color: #8B4513;\">Click here if not redirected automatically</a></p>\n        </div>\n    </div>\n</body>\n</html>\n
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Coffee Shop Designs</title>
+    <meta name="description" content="Beautiful coffee shop website templates">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script type="text/javascript">
+        // GitHub Pages SPA redirect hack
+        // Single Page Apps for GitHub Pages
+        // https://github.com/rafrex/spa-github-pages
+        
+        var pathSegmentsToKeep = 0;
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+        );
+    </script>
+</head>
+<body>
+    <!-- Fallback content -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Inter', sans-serif; text-align: center; background: #FAF7F0;">
+        <div>
+            <h1 style="color: #8B4513; font-size: 2rem; margin-bottom: 1rem;">☕ Coffee Shop Designs</h1>
+            <p style="color: #2C1810; margin-bottom: 1rem;">Redirecting...</p>
+            <p><a href="/" style="color: #8B4513; text-decoration: none; padding: 10px 20px; border: 2px solid #8B4513; border-radius: 5px;">Go to Homepage</a></p>
+        </div>
+    </div>
+</body>
+</html>\n
