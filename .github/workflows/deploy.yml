@@ -47,8 +47,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist/browser folder
-          path: './dist/browser'
+          # Upload dist/coffee-shop-designs/browser folder
+          path: './dist/coffee-shop-designs/browser'
 
   # Deployment job
   deploy:
