@@ -1,0 +1,726 @@
+// Variables
+$primary-color: #8B4513;
+$secondary-color: #D2691E;
+$accent-color: #F4A460;
+$dark-brown: #654321;
+$light-cream: #FFF8DC;
+$white: #FFFFFF;
+$black: #2C1810;
+$gray: #666;
+$light-gray: #f5f5f5;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@mixin transition {
+  transition: all 0.3s ease;
+}
+
+// Reset and base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: $black;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Header
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  @include card-shadow;
+  
+  .navbar {
+    padding: 1rem 0;
+  }
+  
+  .nav-container {
+    @include flex-center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .logo h2 {
+    color: $primary-color;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    
+    a {
+      text-decoration: none;
+      color: $black;
+      font-weight: 500;
+      @include transition;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  .order-btn {
+    background: $primary-color;
+    color: $white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    @include transition;
+    
+    &:hover {
+      background: $dark-brown;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $light-cream 0%, $accent-color 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 20px;
+  position: relative;
+  width: 100%;
+  
+  .hero-content {
+    max-width: 600px;
+    margin-bottom: 3rem;
+    width: 100%;
+    
+    h1 {
+      font-size: 3.5rem;
+      color: $primary-color;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    p {
+      font-size: 1.25rem;
+      color: $dark-brown;
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .cta-button {
+    background: $secondary-color;
+    color: $white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    @include transition;
+    
+    &:hover {
+      background: $primary-color;
+      transform: translateY(-3px);
+      @include card-shadow;
+    }
+  }
+}
+
+// Carousel
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    @include card-shadow;
+  }
+  
+  .carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    @include transition;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    
+    &.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    &:first-child {
+      transform: translateX(0);
+    }
+  }
+  
+  .drink-card {
+    background: $white;
+    height: 100%;
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+    
+    .placeholder-image {
+      font-size: 4rem;
+      color: $primary-color;
+      margin-bottom: 1rem;
+    }
+    
+    h3 {
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    
+    p {
+      color: $gray;
+      margin-bottom: 1rem;
+    }
+    
+    .price {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: $secondary-color;
+    }
+  }
+  
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(139, 69, 19, 0.9);
+    color: $white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include transition;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    
+    &:hover {
+      background: $primary-color;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    &.prev {
+      left: 15px;
+    }
+    
+    &.next {
+      right: 15px;
+    }
+  }
+  
+  .carousel-dots {
+    @include flex-center;
+    margin-top: 1.5rem;
+    gap: 0.75rem;
+    
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(139, 69, 19, 0.4);
+      cursor: pointer;
+      @include transition;
+      border: 2px solid transparent;
+      
+      &:hover {
+        background: rgba(139, 69, 19, 0.7);
+      }
+      
+      &.active {
+        background: $primary-color;
+        border-color: $primary-color;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+// Menu Section
+.menu {
+  padding: 5rem 0;
+  background: $white;
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: $gray;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+  
+  .menu-filters {
+    @include flex-center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    
+    .filter-btn {
+      background: transparent;
+      border: 2px solid $primary-color;
+      color: $primary-color;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      @include transition;
+      
+      &:hover,
+      &.active {
+        background: $primary-color;
+        color: $white;
+      }
+    }
+  }
+  
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    
+    .menu-item {
+      background: $white;
+      border-radius: 15px;
+      overflow: hidden;
+      @include card-shadow;
+      @include transition;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+      
+      .menu-item-image {
+        position: relative;
+        height: 200px;
+        background: $light-gray;
+        @include flex-center;
+        
+        .placeholder-image {
+          font-size: 3rem;
+          color: $primary-color;
+        }
+        
+        .popular-badge {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background: $secondary-color;
+          color: $white;
+          padding: 0.25rem 0.75rem;
+          border-radius: 15px;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+      }
+      
+      .menu-item-content {
+        padding: 1.5rem;
+        
+        h3 {
+          color: $primary-color;
+          margin-bottom: 0.5rem;
+          font-size: 1.25rem;
+        }
+        
+        p {
+          color: $gray;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+        }
+        
+        .menu-item-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          
+          .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: $secondary-color;
+          }
+          
+          .add-to-cart {
+            background: $primary-color;
+            color: $white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            @include transition;
+            
+            &:hover {
+              background: $dark-brown;
+              transform: scale(1.05);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// About Section
+.about {
+  padding: 5rem 0;
+  background: $light-cream;
+  
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .about-text {
+    h2 {
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 1.5rem;
+    }
+    
+    p {
+      color: $dark-brown;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    .features {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      
+      .feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        
+        .feature-icon {
+          font-size: 2rem;
+          flex-shrink: 0;
+        }
+        
+        h4 {
+          color: $primary-color;
+          margin-bottom: 0.5rem;
+        }
+        
+        p {
+          color: $gray;
+          font-size: 0.9rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+  
+  .about-image {
+    @include flex-center;
+    
+    .placeholder-image.large {
+      font-size: 8rem;
+      color: $primary-color;
+      background: $white;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      @include flex-center;
+      @include card-shadow;
+    }
+  }
+}
+
+// Contact Section
+.contact {
+  padding: 5rem 0;
+  background: $white;
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin-bottom: 3rem;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    
+    .contact-info {
+      .info-item {
+        margin-bottom: 2rem;
+        
+        h4 {
+          color: $primary-color;
+          margin-bottom: 1rem;
+          font-size: 1.2rem;
+        }
+        
+        p {
+          color: $gray;
+          line-height: 1.6;
+        }
+      }
+    }
+    
+    .contact-form {
+      background: $light-gray;
+      padding: 2rem;
+      border-radius: 15px;
+      
+      h3 {
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+      }
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        
+        input,
+        textarea {
+          padding: 1rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-size: 1rem;
+          @include transition;
+          
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+          }
+        }
+        
+        button {
+          background: $primary-color;
+          color: $white;
+          border: none;
+          padding: 1rem;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          @include transition;
+          
+          &:hover {
+            background: $dark-brown;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Footer
+.footer {
+  background: $dark-brown;
+  color: $white;
+  padding: 3rem 0 1rem;
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+    
+    .footer-section {
+      h3,
+      h4 {
+        color: $accent-color;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        color: #ccc;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      
+      ul {
+        list-style: none;
+        
+        li {
+          margin-bottom: 0.5rem;
+          
+          a {
+            color: #ccc;
+            text-decoration: none;
+            @include transition;
+            
+            &:hover {
+              color: $accent-color;
+            }
+          }
+        }
+      }
+      
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        
+        a {
+          color: #ccc;
+          text-decoration: none;
+          @include transition;
+          
+          &:hover {
+            color: $accent-color;
+          }
+        }
+      }
+      
+      .newsletter {
+        display: flex;
+        gap: 0.5rem;
+        
+        input {
+          flex: 1;
+          padding: 0.75rem;
+          border: none;
+          border-radius: 5px;
+          
+          &:focus {
+            outline: none;
+          }
+        }
+        
+        button {
+          background: $accent-color;
+          color: $dark-brown;
+          border: none;
+          padding: 0.75rem 1rem;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: 600;
+          @include transition;
+          
+          &:hover {
+            background: $secondary-color;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #555;
+    
+    p {
+      color: #999;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none; // Simple responsive approach
+  }
+  
+  .hero {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .about-content,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .carousel-btn {
+    display: none; // Hide on mobile for touch navigation
+  }
+  
+  .menu-filters {
+    flex-direction: column;
+    align-items: stretch;
+    
+    .filter-btn {
+      width: 100%;
+      margin: 0.25rem 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .hero .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}

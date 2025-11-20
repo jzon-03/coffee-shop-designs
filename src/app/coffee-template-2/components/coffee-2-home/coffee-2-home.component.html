@@ -1,0 +1,284 @@
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <h1>ROASTERY</h1>
+      <span class="tagline">Premium Coffee Co.</span>
+    </div>
+    
+    <div class="nav-links" [class.open]="isMenuOpen">
+      <a href="/coffee-template-2/#home">Home</a>
+      <a href="/coffee-template-2/#products">Coffee</a>
+      <a href="/coffee-template-2/#about">Story</a>
+      <a href="/coffee-template-2/#contact">Contact</a>
+    </div>
+    
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-background">
+    <div class="hero-overlay"></div>
+  </div>
+  
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Crafted with Passion</h1>
+      <h2>Served with Excellence</h2>
+      <p>Experience the finest coffee blends from around the world, roasted fresh daily in our artisanal roastery.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary">Explore Coffee</button>
+        <button class="btn-secondary">Our Story</button>
+      </div>
+    </div>
+    
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Happy Customers</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">15+</span>
+        <span class="stat-label">Coffee Origins</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">10</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="products">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Coffee Collection</h2>
+      <p>Discover our carefully curated selection of premium coffee blends</p>
+    </div>
+    
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory === 'all'"
+        (click)="setActiveCategory('all')">All</button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory === 'signature'"
+        (click)="setActiveCategory('signature')">Signature</button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory === 'classic'"
+        (click)="setActiveCategory('classic')">Classic</button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory === 'seasonal'"
+        (click)="setActiveCategory('seasonal')">Seasonal</button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory === 'cold'"
+        (click)="setActiveCategory('cold')">Cold Brew</button>
+    </div>
+    
+    <!-- Products Grid -->
+    <div class="products-grid">
+      <div 
+        class="product-card" 
+        *ngFor="let product of filteredProducts"
+        [class.featured]="product.featured">
+        
+        <div class="product-image">
+          <div class="product-placeholder">COFFEE</div>
+          <div class="product-badges">
+            <span *ngIf="product.bestseller" class="badge bestseller">Bestseller</span>
+            <span *ngIf="product.featured" class="badge featured">Featured</span>
+          </div>
+        </div>
+        
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <div class="product-footer">
+            <span class="price">${{ product.price.toFixed(2) }}</span>
+            <button class="add-btn" (click)="addToCart(product)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image">
+        <div class="image-placeholder">ROASTERY</div>
+      </div>
+      
+      <div class="about-content">
+        <h2>Our Story</h2>
+        <p class="lead">Founded in 2014, ROASTERY began as a small neighborhood coffee shop with a big dream: to serve the world's finest coffee while building meaningful connections in our community.</p>
+        
+        <div class="about-features">
+          <div class="feature">
+            <div class="feature-icon">BEAN</div>
+            <div class="feature-text">
+              <h4>Premium Beans</h4>
+              <p>Sourced directly from the world's finest coffee-growing regions</p>
+            </div>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">ROAST</div>
+            <div class="feature-text">
+              <h4>Artisan Roasting</h4>
+              <p>Small-batch roasting to bring out the unique character of each origin</p>
+            </div>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">CUP</div>
+            <div class="feature-text">
+              <h4>Expert Brewing</h4>
+              <p>Skilled baristas trained in the art and science of coffee extraction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Customers Say</h2>
+    
+    <div class="testimonial-container">
+      <div class="testimonial" *ngFor="let testimonial of testimonials; let i = index" [class.active]="i === currentTestimonial">
+        <div class="testimonial-content">
+          <div class="stars">
+            <span *ngFor="let star of getStarArray(testimonial.rating)" class="star" [class.filled]="star === 1">★</span>
+          </div>
+          <blockquote>{{ testimonial.comment }}</blockquote>
+          <div class="author">
+            <strong>{{ testimonial.name }}</strong>
+            <span>{{ testimonial.role }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-dots">
+        <span 
+          *ngFor="let testimonial of testimonials; let i = index" 
+          class="dot" 
+          [class.active]="i === currentTestimonial"
+          (click)="goToTestimonial(i)"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Visit Our Roastery</h2>
+        
+        <div class="info-group">
+          <h3>Location</h3>
+          <p>456 Artisan Avenue<br>
+             Coffee District<br>
+             Metro City, MC 67890</p>
+        </div>
+        
+        <div class="info-group">
+          <h3>Hours</h3>
+          <p>Monday - Friday: 6:00 AM - 8:00 PM<br>
+             Saturday - Sunday: 7:00 AM - 9:00 PM</p>
+        </div>
+        
+        <div class="info-group">
+          <h3>Contact</h3>
+          <p>Phone: (555) 987-6543<br>
+             Email: hello&#64;roastery.coffee</p>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3>Get in Touch</h3>
+        <form>
+          <div class="form-row">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+          </div>
+          <input type="text" placeholder="Subject" required>
+          <textarea placeholder="Message" rows="5" required></textarea>
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>ROASTERY</h3>
+        <p>Premium Coffee Co.</p>
+        <p>Crafting exceptional coffee experiences since 2014.</p>
+      </div>
+      
+      <div class="footer-links">
+        <div class="link-group">
+          <h4>Menu</h4>
+          <a href="#">Coffee</a>
+          <a href="#">Espresso</a>
+          <a href="#">Cold Brew</a>
+          <a href="#">Pastries</a>
+        </div>
+        
+        <div class="link-group">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Our Story</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+        </div>
+        
+        <div class="link-group">
+          <h4>Support</h4>
+          <a href="#">Contact</a>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+      </div>
+      
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 ROASTERY Premium Coffee Co. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
