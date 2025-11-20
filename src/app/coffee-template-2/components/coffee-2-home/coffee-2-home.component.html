@@ -7,10 +7,10 @@
     </div>
     
     <div class="nav-links" [class.open]="isMenuOpen">
-      <a href="/coffee-template-2/#home">Home</a>
-      <a href="/coffee-template-2/#products">Coffee</a>
-      <a href="/coffee-template-2/#about">Story</a>
-      <a href="/coffee-template-2/#contact">Contact</a>
+      <a (click)="scrollToSection('home')" class="nav-link">Home</a>
+      <a (click)="scrollToSection('products')" class="nav-link">Coffee</a>
+      <a (click)="scrollToSection('about')" class="nav-link">Story</a>
+      <a (click)="scrollToSection('contact')" class="nav-link">Contact</a>
     </div>
     
     <button class="menu-toggle" (click)="toggleMenu()">
@@ -33,8 +33,8 @@
       <h2>Served with Excellence</h2>
       <p>Experience the finest coffee blends from around the world, roasted fresh daily in our artisanal roastery.</p>
       <div class="hero-buttons">
-        <button class="btn-primary">Explore Coffee</button>
-        <button class="btn-secondary">Our Story</button>
+        <button class="btn-primary" (click)="scrollToSection('products')">Explore Coffee</button>
+        <button class="btn-secondary" (click)="scrollToSection('about')">Our Story</button>
       </div>
     </div>
     

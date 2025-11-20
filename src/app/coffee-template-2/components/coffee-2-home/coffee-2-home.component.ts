@@ -139,4 +139,22 @@ export class Coffee2HomeComponent implements OnInit {
   getStarArray(rating: number): number[] {
     return Array(5).fill(0).map((_, i) => i < rating ? 1 : 0);
   }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 70; // Account for fixed header height
+      const elementPosition = element.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+      
+      // Close mobile menu after navigation
+      if (this.isMenuOpen) {
+        this.isMenuOpen = false;
+      }
+    }
+  }
 }
